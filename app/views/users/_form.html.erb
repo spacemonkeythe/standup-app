@@ -12,6 +12,10 @@
   <% end %>
 
   <div class="field">
+    <%= image_tag @user.image_url(:thumb) if @user.image? %>
+  </div>
+
+  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
