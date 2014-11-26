@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :links
+
   devise_for :users  
  
  resources :users
-  root to: "users#index"
+  root to: "links#index"
  
   #get "/users/sign_up(.:format)"   =>	"devise/registrations#new" 
 
