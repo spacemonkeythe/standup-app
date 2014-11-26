@@ -38,3 +38,7 @@ gem 'spring', '1.1.0',       group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+
+gem 'devise'
+
+gem 'carrierwave'

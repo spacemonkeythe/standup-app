@@ -40,3 +40,5 @@ gem 'spring', '1.1.0',       group: :development
 
 
 gem 'devise'
+
+gem 'carrierwave', '~>0.10.0'
