@@ -134,7 +134,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.0)
   jquery-rails
-  mini_magick (~> 3.8.0)
+  mini_magick
   pg
   rails (= 4.1.7)
   sass-rails (~> 4.0.3)
