@@ -45,3 +45,5 @@ gem 'carrierwave', '~>0.10.0'
 
 gem 'mini_magick'
 
+gem 'bootstrap-sass', '~> 3.3.1.0'
+
