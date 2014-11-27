@@ -1,18 +1,19 @@
 
 
 <p>
-  <strong>Name:</strong>
-  <%= @user.name %>
+   <h2><%= @user.name %> /</h2><%= @user.username %>
 </p>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+
+  
+
 
 <p>
-  <strong>Image:</strong>
-  <%= image_tag @user.image_url.to_s %>
+  <% if @user.image? %>
+  	<td><%= image_tag @user.image_url(:thumb).to_s, :class => 'img-thumbnail' %></td>
+  <% else %>
+  	<td><%= image_tag 'default.png', size: "100x100", :class => 'img-thumbnail' %></td>
+  <% end %>  
 </p>
 
 <%= link_to 'Back', users_path %>

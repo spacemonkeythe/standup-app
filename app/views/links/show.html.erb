@@ -10,9 +10,9 @@
 <% end %>
 
 
-
-<ul>
-	<% @link.tasks.each do |task| %>
-		<li><%= task.content %></li>
-	<% end %>
-</ul>
+<div class="panel panel-default">
+	<ul class="list-group">
+		<% @link.tasks.each do |task| %>
+			<li class="list-group-item"><%= task.content %></li>
+		<% end %>
+	</ul>

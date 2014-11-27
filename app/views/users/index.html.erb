@@ -1,21 +1,26 @@
 <h1>Listing users</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
+      <th>Image</th>
       <th>Name</th>
       <th>Username</th>
-      <th>Image</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
+
       <tr>
+        <% if user.image? %>
+          <td><%= image_tag user.image_url(:thumb).to_s, :class => 'img-thumbnail' %></td>
+        <% else %>
+           <td><%= image_tag 'default.png', size: "100x100", :class => 'img-thumbnail' %></td>
+        <% end %>  
         <td><%= user.name %></td>
         <td><%= user.username %></td>
-        <td><%= image_tag user.image_url(:thumb) if user.image? %></td>
         <td><%= link_to 'Show', user %></td>
 
       </tr>
@@ -25,4 +30,3 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
