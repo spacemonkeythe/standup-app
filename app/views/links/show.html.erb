@@ -8,3 +8,11 @@
 		<%= link_to 'Destroy', @link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
 	</div>
 <% end %>
+
+
+
+<ul>
+	<% @link.tasks.each do |task| %>
+		<li><%= task.content %></li>
+	<% end %>
+</ul>

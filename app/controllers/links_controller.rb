@@ -45,7 +45,7 @@ class LinksController < ApplicationController
     end
 
     def link_params
-      params.require(:link).permit(:title, :content)
+      params.require(:link).permit(:title, :content, tasks_attributes: [:id, :content, :done, :_destroy])
     end
 
     def authorized_user

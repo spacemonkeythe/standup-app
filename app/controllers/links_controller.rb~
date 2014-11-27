@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :authorized_user!, only: [:edit, :update, :destroy]
+  before_action :authorized_user, only: [:edit, :update, :destroy]
 
   respond_to :html
 
@@ -45,7 +45,7 @@ class LinksController < ApplicationController
     end
 
     def link_params
-      params.require(:link).permit(:title, :content)
+      params.require(:link).permit(:title, :content, tasks_attributes: [:id, :content, :done, :_destroy]))
     end
 
     def authorized_user
