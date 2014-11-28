@@ -6,13 +6,13 @@ class LinksController < ApplicationController
   respond_to :html
 
   def index
-    @links = Link.all
+    @links = Link.order('created_at DESC').all
     respond_with(@links)
   end
 
   def show
-    #@link.user = current_user
-    respond_with(@link)
+    @prev = Link.where(id: < params[:id]).last 
+    respond_with(@link, @prew)
   end
 
   def new
@@ -45,7 +45,7 @@ class LinksController < ApplicationController
     end
 
     def link_params
-      params.require(:link).permit(:title, :content, tasks_attributes: [:id, :content, :done, :_destroy]))
+      params.require(:link).permit(:title, :content, tasks_attributes: [:id, :content, :done, :_destroy])
     end
 
     def authorized_user

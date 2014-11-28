@@ -6,13 +6,13 @@ class LinksController < ApplicationController
   respond_to :html
 
   def index
-    @links = Link.all
+    @links = Link.order('created_at DESC').all
     respond_with(@links)
   end
 
   def show
-    #@link.user = current_user
-    respond_with(@link)
+    @prev = Link.where("id < ?", params[:id]).last 
+    respond_with(@link, @prew)
   end
 
   def new

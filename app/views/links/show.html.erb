@@ -3,23 +3,28 @@
 		<h1><a href="#"><%= @link.title %></a><br> <small>Submitted by <%= @link.user.name %></small></h1>
 	</div>	
 </div>
-
-
-
-	<div id="comments">
-		<ul class="list-group">
+		  
+			<h2>Current tasks:</h2>
 			<% @link.tasks.each do |task| %>
 				<div id="comment">
 					<li class="list-group-item"><%= task.content %></li>
 				</div>	
+			<% end %>	
+			<% if @link.user == current_user -%>
+				<div class="btn-group">
+					<%= link_to 'Edit', edit_link_path(@link), class: "btn btn-default" %>
+					<%= link_to 'Destroy', @link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+				</div>
 			<% end %>
-		</ul>
-	</div>	
+			</hr>
+			<div class="link row clearfix">
+			<h2>Previous tasks:</h2>
+			<% @prev.tasks.each do |pre| %>
+				<div id="comment">
+					<li class="list-group-item"><%= pre.content %></li>
+				</div>	
+			<% end %>
+			</div>
 
-<% if @link.user == current_user -%>
-	<div class="btn-group">
-		<%= link_to 'Edit', edit_link_path(@link), class: "btn btn-default" %>
-		<%= link_to 'Destroy', @link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
-	</div>
-<% end %>
+
 	
