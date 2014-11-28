@@ -3,4 +3,13 @@ class Link < ActiveRecord::Base
   has_many :tasks
   accepts_nested_attributes_for :tasks, :reject_if => :all_blank, :allow_destroy => true
   validates_presence_of :title, :content
+  
+  validate :user_quota, :on => :create 
+
+  private 
+  def user_quota
+    if user.links.today.count >= 1
+      errors.add(:base, "Exceeds daily limit")
+    end
+  end
 end

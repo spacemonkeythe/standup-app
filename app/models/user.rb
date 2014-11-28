@@ -6,7 +6,13 @@ class User < ActiveRecord::Base
  
   mount_uploader :image, ImageUploader
 
-  has_many :links
+  has_many :links  do
 
+  
+    def today
+        where(:created_at => (Time.now.beginning_of_day..Time.now))
+    end
+
+  end
 
 end
