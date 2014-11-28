@@ -47,3 +47,5 @@ gem 'mini_magick'
 
 gem 'bootstrap-sass', '~> 3.3.1.0'
 
+gem 'cocoon', '~>1.2.2'
+
