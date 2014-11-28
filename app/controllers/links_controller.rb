@@ -6,7 +6,7 @@ class LinksController < ApplicationController
   respond_to :html
 
   def index
-    @links = Link.order('created_at DESC').all
+    @links = Link.order('created_at DESC').all.paginate(:per_page => 5, :page => params[:page])
     respond_with(@links)
   end
 

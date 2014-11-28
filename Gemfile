@@ -49,3 +49,5 @@ gem 'bootstrap-sass', '~> 3.3.1.0'
 
 gem 'cocoon', '~>1.2.2'
 
+gem 'will_paginate', '~> 3.0.6'
+
