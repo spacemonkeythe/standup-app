@@ -1,0 +1,12 @@
+Feature: Write link
+	As a signed in user
+	I can post a new link
+
+	Scenario:
+		Given I am on the homepage
+		When I click "Submitt link"
+		And I fill "My first post" as Title
+		And I fill "Test content" as content
+		And I click "Submit" button
+		Then I should see the link I just posted
+
