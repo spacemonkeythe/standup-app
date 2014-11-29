@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'rails_12factor'
-
 ruby '2.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -53,4 +51,6 @@ gem 'bootstrap-sass', '~> 3.3.1.0'
 gem 'cocoon', '~>1.2.2'
 
 gem 'will_paginate', '~> 3.0.6'
+
+gem 'rails_12factor'
 
