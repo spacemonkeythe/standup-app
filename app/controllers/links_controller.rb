@@ -11,8 +11,8 @@ class LinksController < ApplicationController
   end
 
   def show
-    @prev = Link.where("id < ?", params[:id]).last 
-    respond_with(@link, @prew)
+    @prev = Link.where("(id < ?) AND (user_id = ?)", params[:id], current_user).last 
+    respond_with(@link, @prev)
   end
 
   def new

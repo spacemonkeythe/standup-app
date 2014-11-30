@@ -19,11 +19,15 @@
 			</hr>
 			<div class="link row clearfix">
 			<h2>Previous tasks:</h2>
-			<% @prev.tasks.each do |pre| %>
-				<div id="comment">
-					<li class="list-group-item"><%= pre.content %></li>
-				</div>	
-			<% end %>
+				<% if @prev != nil%>
+					<% @prev.tasks.each do |pre| %>
+						<div id="comment">
+							<li class="list-group-item"><%= pre.content %></li>
+						</div>	
+					<% end %>
+				<% else %>
+				  <h3>No previous tasks</h3>
+				<% end %>
 			</div>
 
 
