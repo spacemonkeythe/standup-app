@@ -8,7 +8,7 @@ class Link < ActiveRecord::Base
 
   private 
   def user_quota
-    if user.links.today.count >= 2
+    if user.links.today.count >= 1
       errors.add(:base, "Exceeds daily limit")
     end
   end

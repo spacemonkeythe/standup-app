@@ -19,9 +19,11 @@ When(/^I click "(.*?)" button$/) do |arg1|
 	click_on arg1
 end
 
-Then(/^I should see the link lists as a logedin$/) do
-  visit("/")
+Then(/^I should notice message "(.*?)"$/) do |arg1|
+  page.should have_content(arg1)
 end
+
+
 
 
 

@@ -1,12 +1,12 @@
-Feature: Write link
-	As a signed in user
-	I can post a new link
+Feature: Sign in
+	As a signed up user 
+	I can sign in 
 
 	Scenario:
 		Given I am on the homepage
 		When I click "Login"
-		And I fill "test@gmail.com" as Email
-		And I fill "test1234567890" as Password
+		And I fill "asdf@gmail.com" as Email
+		And I fill "asdfasdf" as Password
 		And I click "Log in" button
-		Then I should see the link lists as a logedin
+		Then I should notice message "Signed in successfully."
 

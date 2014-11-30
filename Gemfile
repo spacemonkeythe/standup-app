@@ -55,8 +55,12 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'rails_12factor'
 
 group :test do
+  gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
+  gem 'launchy'
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
 end
+
+
 
