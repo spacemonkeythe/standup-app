@@ -10,7 +10,4 @@ When(/^I fill "(.*?)" as Password confirmation$/) do |arg1|
   fill_in("Password confirmation", with: arg1)
 end
 
-When(/^I add Image$/) do
-  attach_file('Image', '/home/mladen/mmilosevic.jpeg')
-end
 

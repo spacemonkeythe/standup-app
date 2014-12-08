@@ -10,6 +10,5 @@ Feature: Sign up
 		And I fill "test@gmail.com" as Email
 		And I fill "test1234567890" as Password
 		And I fill "test1234567890" as Password confirmation
-		And I add Image
 		And I click "Join now" button
 		Then I should notice message "Welcome! You have signed up successfully."
