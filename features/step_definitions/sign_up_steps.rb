@@ -1,5 +1,5 @@
 When(/^I fill "(.*?)" as Name$/) do |name|
-	fill_in("Name", with: name)
+  fill_in("Name", with: name)
 end
 
 When(/^I fill "(.*?)" as Username$/) do |username|

@@ -3,9 +3,8 @@ Given(/^I am on the homepage$/) do
 end
 
 When(/^I click "(.*?)"$/) do |link|
-	first(:link, link).click
+  first(:link, link).click
 end
-
 
 When(/^I fill "(.*?)" as Email$/) do |email|
   fill_in "Email", :with => email
