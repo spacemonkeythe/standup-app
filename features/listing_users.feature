@@ -4,7 +4,7 @@ Feature: Show users
 
 	Scenario:
 		Given I am on the homepage
-		When I click "Sign up" 
+		When I click "Sign up"
 		And I fill "test" as Name
 		And I fill "test" as Username
 		And I fill "test@gmail.com" as Email
