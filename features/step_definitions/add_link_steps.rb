@@ -2,19 +2,19 @@ Given /^I wait for (\d+) seconds?$/ do |n|
   sleep(n.to_i)
 end
 
-When(/^I fill "(.*?)" as Title$/) do |arg1|
-  fill_in("Title", with: arg1)
+When(/^I fill "(.*?)" as Title$/) do |title|
+  fill_in("Title", with: title)
 end
 
-When(/^I fill "(.*?)" as Content$/) do |arg1|
-  fill_in("Content", with: arg1)
+When(/^I fill "(.*?)" as Content$/) do |content|
+  fill_in("Content", with: content)
 end
 
 
 
-Then(/^I should notice a "(.*?)" and "(.*?)" sections$/) do |arg1, arg2|
-  page.should have_content(arg1)
-  page.should have_content(arg2)
+Then(/^I should notice a "(.*?)" and "(.*?)" sections$/) do |content1, content2|
+  page.should have_content(content1)
+  page.should have_content(content2)
 end
 
 

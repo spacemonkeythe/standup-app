@@ -1,3 +1,3 @@
-Then(/^I should see  "(.*?)"$/) do |arg1|
-	page.should have_content(arg1)
+Then(/^I should see  "(.*?)"$/) do |content|
+	page.should have_content(content)
 end

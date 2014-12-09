@@ -1,13 +1,13 @@
-When(/^I fill "(.*?)" as Name$/) do |arg1|
-	fill_in("Name", with: arg1)
+When(/^I fill "(.*?)" as Name$/) do |name|
+	fill_in("Name", with: name)
 end
 
-When(/^I fill "(.*?)" as Username$/) do |arg1|
-  fill_in("Username", with: arg1)
+When(/^I fill "(.*?)" as Username$/) do |username|
+  fill_in("Username", with: username)
 end
 
-When(/^I fill "(.*?)" as Password confirmation$/) do |arg1|
-  fill_in("Password confirmation", with: arg1)
+When(/^I fill "(.*?)" as Password confirmation$/) do |pass_confirm|
+  fill_in("Password confirmation", with: pass_confirm)
 end
 
 
