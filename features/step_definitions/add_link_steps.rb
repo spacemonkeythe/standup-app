@@ -1,7 +1,3 @@
-Given /^I wait for (\d+) seconds?$/ do |n|
-  sleep(n.to_i)
-end
-
 When(/^I fill "(.*?)" as Title$/) do |title|
   fill_in("Title", with: title)
 end

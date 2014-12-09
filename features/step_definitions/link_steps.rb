@@ -15,7 +15,7 @@ When(/^I fill "(.*?)" as Password$/) do |pass|
 end
 
 When(/^I click "(.*?)" button$/) do |button|
-	click_on button
+  click_on button
 end
 
 Then(/^I should notice message "(.*?)"$/) do |content|
