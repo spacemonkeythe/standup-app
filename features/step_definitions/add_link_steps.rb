@@ -8,9 +8,8 @@ end
 
 
 
-Then(/^I should notice a "(.*?)" and "(.*?)" sections$/) do |content1, content2|
+Then(/^I should notice a "(.*?)" sections$/) do |content1|
   page.should have_content(content1)
-  page.should have_content(content2)
 end
 
 
