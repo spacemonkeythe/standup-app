@@ -13,5 +13,7 @@ Feature: Post a link
 		And I click "Log in" button
 		And I click "Submit link"
 		And I fill "cuccumber testing" as Title
+		And I click "add task"
+		And I fill "cucumber testing task 1" as Content
 		And I click "Submit" button
 		Then I should notice a "Current tasks:" and "Previous tasks:" sections
