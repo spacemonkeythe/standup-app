@@ -19,4 +19,3 @@ Feature: Bad login
     And I fill "12345678901" as "Password"
     And I click "Log in" button
     Then I should see "Invalid email or password."
-    
