@@ -7,7 +7,7 @@ Feature: Post a link
   Scenario:
     Given I am on the homepage
     And I am a signed up user
-    And I am a new, authenticated user
+    And I am loged in
     When I click "Submit link"
     And I fill "cuccumber testing" as Title
     And I click "add task"

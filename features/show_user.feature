@@ -5,7 +5,7 @@ Feature: Show users
   Scenario:
     Given I am a signed up user 
     And I am on the homepage
-    And I am a new, authenticated user
+    And I am loged in
     And I click "View users" button
     And I click "Show"
     Then I should see "mladen"

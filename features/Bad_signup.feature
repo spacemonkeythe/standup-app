@@ -30,7 +30,6 @@ Feature: Bad signup
     And I click "Join now" button
     Then I should see "Password can't be blank Name Username Email Password (8 characters minimum)"
 
-
   Scenario:
     Given I am on the homepage
     When I click "Sign up" 
@@ -39,5 +38,3 @@ Feature: Bad signup
     And I fill "test1234567890" as Password
     And I click "Join now" button
     Then I should not see "Join now"
-
-    
