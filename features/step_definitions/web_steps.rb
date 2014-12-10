@@ -1,4 +1,4 @@
-When(/^I fill "(.*?)" as (.*?)$/) do |content, field|
+When(/^I fill "(.*?)" as "(.*?)"$/) do |content, field|
   fill_in(field, with: content)
 end
 
