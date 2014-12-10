@@ -3,16 +3,19 @@ Feature: Bad login
     I can post se signed up users
 
   Scenario:
-    Given I am on the homepage
-    When I click "Sign up" 
-    And I fill "test" as Name
-    And I fill "test" as Username
+    Given I am a signed up user 
+    And I am on the homepage
+    When I click "Login"
+    And I fill "testt@gmail.com" as Email
+    And I fill "1234567890" as Password
+    And I click "Log in" button
+    Then I should see "Invalid email or password."
+
+  Scenario:
+    Given I am a signed up user 
+    And I am on the homepage
+    When I click "Login"
     And I fill "test@gmail.com" as Email
-    And I fill "test1234567890" as Password
-    And I fill "test1234567890" as Password confirmation
-    And I click "Join now" button
-    And I click "Logout"
-    And I click "Login"
-    And I fill "test1234567890" as Password
+    And I fill "12345678901" as Password
     And I click "Log in" button
     Then I should see "Invalid email or password."
