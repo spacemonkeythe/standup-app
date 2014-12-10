@@ -9,3 +9,4 @@ Feature: Show users
     And I click "View users" button
     And I click "Show"
     Then I should see "mladen"
+    

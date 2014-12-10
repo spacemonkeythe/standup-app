@@ -63,6 +63,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'byebug'
 end
-
-
-

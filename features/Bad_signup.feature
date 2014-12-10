@@ -38,3 +38,4 @@ Feature: Bad signup
     And I fill "test1234567890" as "Password"
     And I click "Join now" button
     Then I should not see "Join now"
+    

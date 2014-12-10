@@ -7,3 +7,4 @@ Feature: Show users
     And I am loged in
     When I click "View users" button
     Then I should see "Listing users"
+    

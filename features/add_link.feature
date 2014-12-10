@@ -14,3 +14,4 @@ Feature: Post a link
     And I fill "cucumber testing task 1" as "Content"
     And I click "Submit" button
     Then I should notice a "cucumber testing task 1" sections
+    
