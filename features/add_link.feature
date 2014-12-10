@@ -7,11 +7,8 @@ Feature: Post a link
   Scenario:
     Given I am on the homepage
     And I am a signed up user
-    When I click "Login"
-    And I fill "test@gmail.com" as Email
-    And I fill "1234567890" as Password
-    And I click "Log in" button
-    And I click "Submit link"
+    And I am a new, authenticated user
+    When I click "Submit link"
     And I fill "cuccumber testing" as Title
     And I click "add task"
     And I fill "cucumber testing task 1" as Content
