@@ -1,6 +1,6 @@
-Feature: Show users
+Feature: List all signed up users
   As a signed in user
-  I can post se signed up users
+  I can see profiles of other signed up users
 
   Scenario:
     Given I am a signed up user 

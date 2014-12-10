@@ -1,6 +1,6 @@
 Feature: Bad login
-  As a signed in user
-    I can post se signed up users
+  As a signed up user
+  I must provide valid credentials to log in 
 
   Scenario:
     Given I am a signed up user 
@@ -19,3 +19,4 @@ Feature: Bad login
     And I fill "12345678901" as "Password"
     And I click "Log in" button
     Then I should see "Invalid email or password."
+    

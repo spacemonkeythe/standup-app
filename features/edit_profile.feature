@@ -9,3 +9,8 @@ Feature: Edit profile
     When I click "Edit profile"
     Then I should see "Edit User"
 
+  Scenario:
+    Given I am a signed up user
+    And I am loged in
+    And I am on the "Edit page"
+    

@@ -3,7 +3,6 @@ Feature: Post a link
   I can post a new link
 
   @javascript
-
   Scenario:
     Given I am on the homepage
     And I am a signed up user

@@ -1,6 +1,6 @@
 Feature: Bad signup
   As a new user
-  I must 
+  I must provide valid credentials for sign up 
 
   Scenario:
     Given I am on the homepage
@@ -9,7 +9,7 @@ Feature: Bad signup
     And I fill "test1234567890" as "Password"
     And I fill "test1234567890" as "Password confirmation"
     And I click "Join now" button
-    Then I should see  "Email can't be blank"
+    Then I should see "Email can't be blank"
 
   Scenario:
     Given I am on the homepage
