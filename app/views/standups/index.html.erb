@@ -1,10 +1,10 @@
-<% @links.each do |link| %>
+<% @standups.each do |standup| %>
   <div class="link row clearfix">
     <h2>
-      <%= link_to link.title, link %><br>
-      <small class="author">Submitted <%= time_ago_in_words(link.created_at) %> by <%= link.user.name %></small>
+      <%= link_to standup.title, standup %><br>
+      <small class="author">Submitted <%= time_ago_in_words(stadnup.created_at) %> by <%= standup.user.name %></small>
     </h2>
   </div>
 <% end %>
 
-<%= will_paginate @links, :class => 'digg_pagination' %>
+<%= will_paginate @standups, :class => 'digg_pagination' %>
