@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get '/users', to: 'users#index', as: 'users'
   get '/users/:id',  to: 'users#show', as: 'user'
   #resources :users, only: [:show, :index]   
-  resources :links
-  root to: "links#index"
+  resources :standups
+  root to: "standups#index"
  
   #get "/users/sign_up(.:format)"   =>	"devise/registrations#new" 
 
