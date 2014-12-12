@@ -1,56 +1,56 @@
-class LinksController < ApplicationController
-  before_action :set_link, only: [:show, :edit, :update, :destroy]
+class StandupsController < ApplicationController
+  before_action :set_standup, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :authorized_user, only: [:edit, :update, :destroy]
 
   respond_to :html
 
   def index
-    @links = Link.order('created_at DESC').all.paginate(:per_page => 5, :page => params[:page])
-    respond_with(@links)
+    @standups = Standup.order('created_at DESC').all.paginate(:per_page => 5, :page => params[:page])
+    respond_with(@standups)
   end
 
   def show
-    @prev = Link.where("(id < ?) AND (user_id = ?)", @link.id, @link.user_id).last 
-    respond_with(@link, @prev)
+    @prev = Standup.where("(id < ?) AND (user_id = ?)", @standup.id, @standup.user_id).last 
+    respond_with(@standup, @prev)
   end
 
   def new
-    @link = current_user.links.build
-    respond_with(@link)
+    @standup = current_user.standups.build
+    respond_with(@standup)
   end
 
   def edit
   end
 
   def create
-    @link = current_user.links.build(link_params)
-    @link.save
-    respond_with(@link)
+    @standup = current_user.standups.build(standup_params)
+    @standup.save
+    respond_with(@standup)
   end
 
   def update
-    @link.update(link_params)
-    respond_with(@link)
+    @standup.update(standup_params)
+    respond_with(@standup)
   end
 
   def destroy
-    @link.destroy
-    respond_with(@link)
+    @standup.destroy
+    respond_with(@standup)
   end
 
   private
-    def set_link
-      @link = Link.find(params[:id])
+    def set_standup
+      @standup = Standup.find(params[:id])
     end
 
-    def link_params
-      params.require(:link).permit(:title, :content, tasks_attributes: [:id, :content, :done, :_destroy])
+    def standup_params
+      params.require(:standup).permit(:title, :content, tasks_attributes: [:id, :content, :done, :_destroy])
     end
 
     def authorized_user
-      @link = current_user.links.find_by(id: params[:id])
-      redirect_to links_path, notice: "Not authorized to edit this link" if @link.nil?
+      @standup = current_user.standups.find_by(id: params[:id])
+      redirect_to standups_path, notice: "Not authorized to edit this standup" if @standup.nil?
 end
 
 end
