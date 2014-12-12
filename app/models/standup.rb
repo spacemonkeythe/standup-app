@@ -1,4 +1,4 @@
-class Link < ActiveRecord::Base
+class Standup < ActiveRecord::Base
   belongs_to :user
   has_many :tasks
   accepts_nested_attributes_for :tasks, :reject_if => :all_blank, :allow_destroy => true
@@ -8,7 +8,7 @@ class Link < ActiveRecord::Base
 
   private 
   def user_quota
-    if user.links.today.count >= 1
+    if user.standups.today.count >= 1
       errors.add(:base, "Exceeds daily limit")
     end
   end

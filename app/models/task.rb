@@ -1,3 +1,3 @@
 class Task < ActiveRecord::Base
-  belongs_to :link
+  belongs_to :standup
 end
