@@ -1,12 +1,12 @@
 class StandupsController < ApplicationController
-  before_action :set_standup, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :authorized_user, only: [:edit, :update, :destroy]
+  before_action :set_standup, :only => [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :authorized_user, :only => [:edit, :update, :destroy]
 
   respond_to :html
 
   def index
-    @standups = Standup.order('created_at DESC').all.paginate(:per_page => 5, :page => params[:page])
+    @standups = Standup.newest_first.paginate(:per_page => 5, :page => params[:page])
     respond_with(@standups)
   end
 
@@ -40,17 +40,17 @@ class StandupsController < ApplicationController
   end
 
   private
-    def set_standup
-      @standup = Standup.find(params[:id])
-    end
+  def set_standup
+    @standup = Standup.find(params[:id])
+  end
 
-    def standup_params
-      params.require(:standup).permit(:title, :content, tasks_attributes: [:id, :content, :done, :_destroy])
-    end
+  def standup_params
+    params.require(:standup).permit(:title, :content, tasks_attributes: [:id, :content, :done, :_destroy])
+  end
 
-    def authorized_user
-      @standup = current_user.standups.find_by(id: params[:id])
-      redirect_to standups_path, notice: "Not authorized to edit this standup" if @standup.nil?
-end
+  def authorized_user
+    @standup = current_user.standups.find_by(id: params[:id])
+    redirect_to standups_path, notice: "Not authorized to edit this standup" if @standup.nil?
+  end
 
 end

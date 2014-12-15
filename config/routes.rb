@@ -2,11 +2,11 @@ Rails.application.routes.draw do
 
   
   devise_for :users
-  get '/users', to: 'users#index', as: 'users'
-  get '/users/:id',  to: 'users#show', as: 'user'
+  get '/users', :to => 'users#index', as: 'users'
+  get '/users/:id', :to => 'users#show', as: 'user'
   #resources :users, only: [:show, :index]   
   resources :standups
-  root to: "standups#index"
+  root :to => "standups#index"
  
   #get "/users/sign_up(.:format)"   =>	"devise/registrations#new" 
 
