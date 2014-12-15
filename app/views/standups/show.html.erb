@@ -12,16 +12,16 @@
 <% if @standup.user == current_user -%>
 	<div class="btn-group">
 		<%= link_to 'Edit', edit_standup_path(@standup), class: "btn btn-default" %>
-		<%= link_to 'Destroy', @standup, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default"%>
+		<%= link_to 'Destroy', @standup, :method => :delete, :data => { confirm: 'Are you sure?' }, class: "btn btn-default"%>
 	</div>
 <% end %>
 </hr>
 <div class="link row clearfix">
 <h2>Previous tasks:</h2>
 	<% if @prev != nil%>
-		<% @prev.tasks.each do |pre| %>
+		<% @prev.tasks.each do |task| %>
 			<div id="comment">
-				<li class="list-group-item"><%= pre.content %></li>
+				<li class="list-group-item"><%= tasks.content %></li>
 			</div>	
 		<% end %>
 	<% else %>

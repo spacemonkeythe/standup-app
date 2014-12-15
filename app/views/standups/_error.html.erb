@@ -1,0 +1,10 @@
+<% if standup.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(standup.errors.count, "error") %> prohibited this standup from being saved:</h2>
+    <ul>
+    <% standup.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
