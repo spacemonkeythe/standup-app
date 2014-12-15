@@ -7,10 +7,16 @@ class Standup < ActiveRecord::Base
 
   scope :newest_first, -> { order('created_at DESC') }
 
+  def find_previous
+    Standup.where("(id < ?) AND (user_id = ?)", id, user.id).last
+  end
+
   private 
+
     def user_quota
       if user.standups.today.count >= 1
         errors.add(:base, "Exceeds daily limit")
       end
     end
+
   end
