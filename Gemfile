@@ -58,6 +58,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
   gem 'launchy'
+  gem 'factory_girl'
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   gem 'selenium-webdriver'
