@@ -1,0 +1,26 @@
+<%= form_for @standup, html: { multipart: true} do |f| %>
+ 
+ <%= render :partial => 'error', locals: { standup: @standup } %>
+
+  <div class="form-group">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  
+  <%= f.fields_for :tasks do |task| %>
+    <%= render 'task_fields', f: task %>
+  <% end %>
+
+  <div class="links">
+    <%= link_to_add_association 'add task', f, :tasks, class: "btn btn-default add-button" %>
+  </div>
+
+  <div class="form-group">
+    <div class="pull-right">
+    <%= f.submit "Submit", class: "btn btn-lg btn-primary" %>
+  </div>
+  
+<% end %>
+
+
+
