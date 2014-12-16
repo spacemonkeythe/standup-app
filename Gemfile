@@ -54,7 +54,7 @@ gem 'will_paginate', '~> 3.0.6'
 
 gem 'rails_12factor'
 
-group :test do
+group :test, :development do
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
   gem 'launchy'
@@ -62,4 +62,5 @@ group :test do
   gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'byebug'
+  gem "shoulda"
 end
