@@ -64,4 +64,5 @@ group :test, :development do
   gem 'selenium-webdriver'
   gem 'byebug'
   gem "shoulda"
+  gem "timecop"
 end

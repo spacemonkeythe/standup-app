@@ -18,4 +18,4 @@ class Standup < ActiveRecord::Base
       errors.add(:base, "Exceeds daily limit")
     end
   end
-  end
+end
