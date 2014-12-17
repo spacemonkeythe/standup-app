@@ -31,40 +31,43 @@ RSpec.describe Standup, :type => :model do
         Timecop.travel(2.seconds.from_now) { @standup2 = Standup.create!(:title => "Title2", :content => "content2", :user => @user2) }
       end
 
-      it "orders standups by time created, descending" dos
+      it "orders standups by time created, descending" do
         expect(Standup.newest_first[0]).to eql(Standup.last)
       end
 
     end
   end
 
-describe "#find_previous" do
+  describe "#find_previous" do
 
-  before do
-    @user1 = User.create!(:email => "test10@gmail.com", :password => "test123456")
-    @standup1 = Standup.create!(:title => "Title3", :content => "content3", :user => @user1)
-    Timecop.travel(24.hours.from_now) { @standup2 = Standup.create!(:title => "Title2", :content => "content2", :user => @user1) }
+    before do
+      @user1 = User.create!(:email => "test10@gmail.com", :password => "test123456")
+      @standup1 = Standup.create!(:title => "Title3", :content => "content3", :user => @user1)
+      Timecop.travel(24.hours.from_now) { @standup2 = Standup.create!(:title => "Title2", :content => "content2", :user => @user1) }
+    end
+
+    it "should find previous standup" do
+      expect(@standup2.find_previous).to eql(@standup1)
+    end
+
   end
 
-  it "should find previous standup" do
-    expect(@standup2.find_previous).to eql(@standup1)
+
+  describe "user_quota" do
+
+    before do
+      @user1 = User.create!(:email => "test10@gmail.com", :password => "test123456")
+      @standup1 = Standup.create!(:title => "Title3", :content => "content3", :user => @user1)
+      @standup2 = Standup.new(:title => "Title2", :content => "content2", :user => @user1)
+      byebug
+    end
+
+    it "should not permit standup posting" do
+      expect(@standup2).to_not be_valid
+      expect(@standup2.errors.full_messages).to eql(["Exceeds daily limit"])
+    end
+
   end
-end
-
-
-describe "user_quota" do
-
-  before do
-    @user1 = User.create!(:email => "test10@gmail.com", :password => "test123456")
-    @standup1 = Standup.create!(:title => "Title3", :content => "content3", :user => @user1)
-    @standup2 = Standup.new(:title => "Title2", :content => "content2", :user => @user1)
-  end
-
-  it "should not permit standup posting" do
-    expect(@standup2).to_not be_valid
-    expect(@standup2.errors.full_messages).to eql(["Exceeds daily limit"])
-  end
-end
 
 
 end
