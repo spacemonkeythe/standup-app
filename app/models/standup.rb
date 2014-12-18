@@ -1,5 +1,6 @@
 class Standup < ActiveRecord::Base
   belongs_to :user
+  validates :user, :presence => true
   has_many :tasks, :dependent => :destroy
   accepts_nested_attributes_for :tasks, :reject_if => :all_blank, :allow_destroy => true
   validates_presence_of :title
@@ -18,4 +19,4 @@ class Standup < ActiveRecord::Base
       errors.add(:base, "Exceeds daily limit")
     end
   end
-  end
+end
