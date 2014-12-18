@@ -16,8 +16,8 @@ require "rails_helper"
     it { is_expected.to have_db_column(:sign_in_count).of_type(:integer) }
     it { is_expected.to have_db_column(:current_sign_in_at).of_type(:datetime) }
     it { is_expected.to have_db_column(:last_sign_in_at).of_type(:datetime) }
-    #it { is_expected.to have_db_column(:inet).of_type(:current_sign_in_ip) }
-    #it { is_expected.to have_db_column(:inet).of_type(:last_sign_in_ip) }
+    it { is_expected.to have_db_column(:current_sign_in_ip).of_type(:inet) }
+    it { is_expected.to have_db_column(:last_sign_in_ip).of_type(:inet) }
 
     it { is_expected.to have_many(:standups) }
 
