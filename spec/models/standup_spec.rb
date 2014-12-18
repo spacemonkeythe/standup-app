@@ -9,6 +9,7 @@ RSpec.describe Standup, :type => :model do
   it { is_expected.to have_db_column(:user_id).of_type(:integer) }
 
   it { is_expected.to belong_to(:user) }
+  it { is_expected.to validate_presence_of(:user) }
   it { is_expected.to have_many(:tasks).dependent(:destroy) }
 
   it { should accept_nested_attributes_for(:tasks) }#.but_reject(:all_blank).allow_destroy(true) }
@@ -32,7 +33,7 @@ RSpec.describe Standup, :type => :model do
       end
 
       it "orders standups by time created, descending" do
-        expect(Standup.newest_first[0]).to eql(Standup.last)
+        expect(Standup.newest_first[0]).to eql(@standup2)
       end
 
     end
@@ -47,6 +48,7 @@ RSpec.describe Standup, :type => :model do
     end
 
     it "should find previous standup" do
+      
       expect(@standup2.find_previous).to eql(@standup1)
     end
 
@@ -59,7 +61,6 @@ RSpec.describe Standup, :type => :model do
       @user1 = User.create!(:email => "test10@gmail.com", :password => "test123456")
       @standup1 = Standup.create!(:title => "Title3", :content => "content3", :user => @user1)
       @standup2 = Standup.new(:title => "Title2", :content => "content2", :user => @user1)
-      byebug
     end
 
     it "should not permit standup posting" do
