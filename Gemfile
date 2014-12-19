@@ -56,12 +56,13 @@ gem 'rails_12factor'
 
 group :test, :development do
   gem 'rspec-rails'
+  gem "rspec-activemodel-mocks"
   gem 'cucumber-rails', :require => false
-  gem 'launchy'
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'byebug'
   gem "shoulda"
   gem "timecop"
+  gem 'factory_girl'
 end
