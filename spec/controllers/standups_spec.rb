@@ -98,7 +98,7 @@ RSpec.describe StandupsController, :type => :controller do
 
     describe "GET edit_standups" do
 
-        context " paramters for edit are ok" do
+        context "paramters for edit are ok" do
             before do
                 @standup = double(Standup, :id => 1)
                 standups = double("standups", :build => @standup)
@@ -167,26 +167,52 @@ RSpec.describe StandupsController, :type => :controller do
 
     describe "POST standup_update" do
 
-        before do
-            @standup = mock_model(Standup, :id => 1)
-            standups = double("standups", :build => @standup)
-            @params = {:title => "title", :content => "content", 
-                :task_attributes => {:id => 1, :content => "contetnt", :done => false, :_destroy => "destroy"}}
+        context "parameters for update are ok" do
+            before do
+                @standup = mock_model(Standup, :id => 1)
+                standups = double("standups", :build => @standup)
+                @params = {:title => "title", :content => "content", 
+                    :task_attributes => {:id => 1, :content => "contetnt", :done => false, :_destroy => "destroy"}}
 
-            allow(Standup).to receive(:find) { @standup }
-            allow(@standup).to receive(:update)
+                allow(Standup).to receive(:find) { @standup }
+                allow(@standup).to receive(:update)
 
-            user = double(User, :standups => standups)
-            allow(request.env["warden"]).to receive(:authenticate!) { user }
-            allow(controller).to receive(:current_user) { user }
+                user = double(User, :standups => standups)
+                allow(request.env["warden"]).to receive(:authenticate!) { user }
+                allow(controller).to receive(:current_user) { user }
 
-            allow(user).to receive_message_chain(:standups, :find_by) { @standup }
+                allow(user).to receive_message_chain(:standups, :find_by) { @standup }
+            end
+
+             it "POST saves the standup params" do
+                post :update, :id => 1, :standup => @params
+            end
         end
 
-         it "POST saves the standup params" do
-            post :update, :id => 1, :standup => @params
+        context "parameters for update are not ok" do
+            before do
+                @standup = mock_model(Standup, :id => 1)
+                standups = double("standups", :build => @standup)
+                @params = {:title => "title", :content => "content", 
+                    :task_attributes => {:id => 1, :content => "contetnt", :done => false, :_destroy => "destroy"}}
+
+                allow(Standup).to receive(:find) { @standup }
+                allow(@standup).to receive(:update)
+
+                user = double(User, :standups => standups)
+                allow(request.env["warden"]).to receive(:authenticate!) { user }
+                allow(controller).to receive(:current_user) { user }
+
+                allow(user).to receive_message_chain(:standups, :find_by) { @standup2 }
+            end
+
+            it "displays the notice" do
+                get :edit, :id => 1
+                expect(flash[:notice]).to eql("Not authorized to edit this standup")
+            end
         end
-        #####################################################
+
+
     end
 
        describe "DELETE standup_destroy" do
