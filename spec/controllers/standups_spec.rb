@@ -19,6 +19,7 @@ RSpec.describe StandupsController, :type => :controller do
 
         it "returns http success" do
             get :index
+
             expect(response).to have_http_status(:success)
         end
 
@@ -34,14 +35,16 @@ RSpec.describe StandupsController, :type => :controller do
 
     end
 
-    describe "GET new_standup" do
+    describe "GET new" do
 
         before do
             @standup = mock_model(Standup)
-            standups = double("standups", :build => @standup)
+            
+            user = User.create!(:email => "test10@gmail.com", :password => "test123456")
+            allow(user).to receive_message_chain(:standups, :build) { @standup }
 
-            user = double(User, :standups => standups)
-            allow(request.env["warden"]).to receive(:authenticate!) { user }
+            sign_in(user)
+            
             allow(controller).to receive(:current_user) { user }
         end
 
@@ -62,36 +65,38 @@ RSpec.describe StandupsController, :type => :controller do
 
     end
 
-    describe "GET show_standup" do
+    describe "GET show" do
 
         before do
-            @standup = double(Standup, :id => 2)
-            @prev_standup = double(Standup, :id => 1)
-            standups = double("standups", :build => @standup)
-
+            @standup = double(Standup)
+            @prev_standup = double(Standup)
 
             allow(Standup).to receive(:find) { @standup }
-
-            allow(@standup).to receive(:find_previous) { @prev_standup }
-
-            user = double(User, :standups => standups)
-            allow(request.env["warden"]).to receive(:authenticate!) { user }
-            allow(controller).to receive(:current_user) { user }
+            allow(@standup).to receive(:find_previous) { @prev_standup }            
         end
 
          it "returns http success" do
             get :show, :id => 1
+
             expect(response).to have_http_status(:success)
         end
 
         it "renders the show template" do
             get :show, :id => 1
+
             expect(response).to render_template("show")
         end
 
-        it "prepares for saving new standup" do
+        it "assigns @prev to previous standup" do
             get :show, :id => 1
+
             expect(assigns(:prev)).to eql(@prev_standup)
+        end
+
+        it "assigns @standup to current standup" do
+            get :show, :id => 1
+            
+            expect(assigns(:standup)).to eql(@standup)
         end
 
     end
@@ -161,7 +166,6 @@ RSpec.describe StandupsController, :type => :controller do
 
          it "POST saves the standup params" do
             post :create, :standup => @params
-            #expect(response).to have_http_status(:success)
         end
     end
 
@@ -237,7 +241,7 @@ RSpec.describe StandupsController, :type => :controller do
                 post :destroy, :id => 1
             end
         end
-        
+
         context "parameters for destroy are not ok" do
             before do
                 @standup = mock_model(Standup, :id => 1)
