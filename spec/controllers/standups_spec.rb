@@ -96,5 +96,55 @@ RSpec.describe StandupsController, :type => :controller do
 
     end
 
+    describe "GET edit_standups" do
+
+        before do
+            @standup = double(Standup, :id => 1)
+            standups = double("standups", :build => @standup)
+
+            allow(Standup).to receive(:find) { @standup }
+
+            user = double(User, :standups => standups)
+            allow(request.env["warden"]).to receive(:authenticate!) { user }
+            allow(controller).to receive(:current_user) { user }
+
+            allow(user).to receive_message_chain(:standups, :find_by) { @standup }
+        end
+
+        it "returns http success" do
+            get :edit, :id => 1
+            expect(response).to have_http_status(:success)
+        end
+
+        it "renders the show template" do
+            get :edit, :id => 1
+            expect(response).to render_template("edit")
+        end
+
+        ####################################
+    end
+
+       describe "POST standup_create" do
+
+        before do
+            @standup = mock_model(Standup)
+            standups = double("standups", :build => @standup)
+            @params = {:title => "title", :content => "content", 
+                :task_attributes => {:id => 1, :content => "contetnt", :done => false, :_destroy => "destroy"}}
+
+            allow(@standup).to receive(:save) { true }
+
+
+            user = double(User, :standups => standups)
+            allow(request.env["warden"]).to receive(:authenticate!) { user }
+            allow(controller).to receive(:current_user) { user }
+        end
+
+         it "POST saves the standup params" do
+            post :create, :standup => @params
+        end
+        
+    end
+
 end
 
