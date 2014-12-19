@@ -143,6 +143,32 @@ RSpec.describe StandupsController, :type => :controller do
          it "POST saves the standup params" do
             post :create, :standup => @params
         end
+
+    end
+
+    describe "POST standup_update" do
+
+        before do
+            @standup = mock_model(Standup, :id => 1)
+            standups = double("standups", :build => @standup)
+            @params = {:title => "title", :content => "content", 
+                :task_attributes => {:id => 1, :content => "contetnt", :done => false, :_destroy => "destroy"}}
+
+            allow(Standup).to receive(:find) { @standup }
+
+            allow(@standup).to receive(:update)
+
+
+            user = double(User, :standups => standups)
+            allow(request.env["warden"]).to receive(:authenticate!) { user }
+            allow(controller).to receive(:current_user) { user }
+
+            allow(user).to receive_message_chain(:standups, :find_by) { @standup }
+        end
+
+         it "POST saves the standup params" do
+            post :update, :id => 1, :standup => @params
+        end
         
     end
 
