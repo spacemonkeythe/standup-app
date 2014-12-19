@@ -101,18 +101,18 @@ RSpec.describe StandupsController, :type => :controller do
 
     end
 
-    describe "GET edit_standups" do
+    describe "GET edit" do
 
         context "paramters for edit are ok" do
             before do
                 @standup = double(Standup, :id => 1)
-                standups = double("standups", :build => @standup)
 
                 allow(Standup).to receive(:find) { @standup }
 
-                user = double(User, :standups => standups)
-                allow(request.env["warden"]).to receive(:authenticate!) { user }
+                user = User.create!(:email => "test10@gmail.com", :password => "test123456")
                 allow(controller).to receive(:current_user) { user }
+
+                sign_in(user)
 
                 allow(user).to receive_message_chain(:standups, :find_by) { @standup }
             end
@@ -131,13 +131,12 @@ RSpec.describe StandupsController, :type => :controller do
         context "parameters for edit are not OK" do
             before do
                 @standup = double(Standup, :id => 1)
-                standups = double("standups", :build => @standup)
 
                 allow(Standup).to receive(:find) { @standup }
 
-                user = double(User, :standups => standups)
-                allow(request.env["warden"]).to receive(:authenticate!) { user }
+                user = User.create!(:email => "test10@gmail.com", :password => "test123456")
                 allow(controller).to receive(:current_user) { user }
+                sign_in(user)
 
                 allow(user).to receive_message_chain(:standups, :find_by) { @standup2 }
             end
@@ -149,18 +148,15 @@ RSpec.describe StandupsController, :type => :controller do
         end
     end
 
-       describe "POST standup_create" do
+       describe "POST create" do
 
         before do
-            @standup = mock_model(Standup)
-            standups = double("standups", :build => @standup)
             @params = {:title => nil, :content => nil, 
                 :task_attributes => {:id => nil, :content => nil, :done => false, :_destroy => nil}}
 
             allow(@standup).to receive(:save) { true }
 
-            user = double(User, :standups => standups)
-            allow(request.env["warden"]).to receive(:authenticate!) { user }
+            user = User.create!(:email => "test10@gmail.com", :password => "test123456")
             allow(controller).to receive(:current_user) { user }
         end
 
@@ -169,20 +165,18 @@ RSpec.describe StandupsController, :type => :controller do
         end
     end
 
-    describe "POST standup_update" do
+    describe "POST update" do
 
         context "parameters for update are ok" do
             before do
                 @standup = mock_model(Standup, :id => 1)
-                standups = double("standups", :build => @standup)
                 @params = {:title => "title", :content => "content", 
                     :task_attributes => {:id => 1, :content => "contetnt", :done => false, :_destroy => "destroy"}}
 
                 allow(Standup).to receive(:find) { @standup }
                 allow(@standup).to receive(:update)
 
-                user = double(User, :standups => standups)
-                allow(request.env["warden"]).to receive(:authenticate!) { user }
+                user = User.create!(:email => "test10@gmail.com", :password => "test123456")
                 allow(controller).to receive(:current_user) { user }
 
                 allow(user).to receive_message_chain(:standups, :find_by) { @standup }
@@ -196,22 +190,22 @@ RSpec.describe StandupsController, :type => :controller do
         context "parameters for update are not ok" do
             before do
                 @standup = mock_model(Standup, :id => 1)
-                standups = double("standups", :build => @standup)
                 @params = {:title => "title", :content => "content", 
                     :task_attributes => {:id => 1, :content => "contetnt", :done => false, :_destroy => "destroy"}}
 
                 allow(Standup).to receive(:find) { @standup }
                 allow(@standup).to receive(:update)
 
-                user = double(User, :standups => standups)
-                allow(request.env["warden"]).to receive(:authenticate!) { user }
+                user = User.create!(:email => "test10@gmail.com", :password => "test123456")
                 allow(controller).to receive(:current_user) { user }
+
+                sign_in(user)
 
                 allow(user).to receive_message_chain(:standups, :find_by) { @standup2 }
             end
 
             it "displays the notice" do
-                get :edit, :id => 1
+                get :edit, :id => 1, :standup => @params
                 expect(flash[:notice]).to eql("Not authorized to edit this standup")
             end
         end
@@ -219,21 +213,21 @@ RSpec.describe StandupsController, :type => :controller do
 
     end
 
-       describe "DELETE standup_destroy" do
+       describe "DELETE destroy" do
 
         context "parameters for destroy are ok" do
             before do
                 @standup = mock_model(Standup, :id => 1)
-                standups = double("standups", :build => @standup)
 
                 allow(Standup).to receive(:find) { @standup }
-                allow(@standup).to receive(:update)
 
-                user = double(User, :standups => standups)
-                allow(request.env["warden"]).to receive(:authenticate!) { user }
+                user = User.create!(:email => "test10@gmail.com", :password => "test123456")
                 allow(controller).to receive(:current_user) { user }
 
+                sign_in(user)
+
                 allow(user).to receive_message_chain(:standups, :find_by) { @standup }
+
                 allow(@standup).to receive(:destroy) { true }
             end
 
@@ -245,14 +239,14 @@ RSpec.describe StandupsController, :type => :controller do
         context "parameters for destroy are not ok" do
             before do
                 @standup = mock_model(Standup, :id => 1)
-                standups = double("standups", :build => @standup)
 
                 allow(Standup).to receive(:find) { @standup }
                 allow(@standup).to receive(:update)
 
-                user = double(User, :standups => standups)
-                allow(request.env["warden"]).to receive(:authenticate!) { user }
+                user = User.create!(:email => "test10@gmail.com", :password => "test123456")
                 allow(controller).to receive(:current_user) { user }
+
+                sign_in(user)
 
                 allow(user).to receive_message_chain(:standups, :find_by) { @standup2 }
                 allow(@standup).to receive(:destroy) { true }
