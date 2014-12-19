@@ -217,25 +217,48 @@ RSpec.describe StandupsController, :type => :controller do
 
        describe "DELETE standup_destroy" do
 
-        before do
-            @standup = mock_model(Standup, :id => 1)
-            standups = double("standups", :build => @standup)
+        context "parameters for destroy are ok" do
+            before do
+                @standup = mock_model(Standup, :id => 1)
+                standups = double("standups", :build => @standup)
 
-            allow(Standup).to receive(:find) { @standup }
-            allow(@standup).to receive(:update)
+                allow(Standup).to receive(:find) { @standup }
+                allow(@standup).to receive(:update)
 
-            user = double(User, :standups => standups)
-            allow(request.env["warden"]).to receive(:authenticate!) { user }
-            allow(controller).to receive(:current_user) { user }
+                user = double(User, :standups => standups)
+                allow(request.env["warden"]).to receive(:authenticate!) { user }
+                allow(controller).to receive(:current_user) { user }
 
-            allow(user).to receive_message_chain(:standups, :find_by) { @standup }
-            allow(@standup).to receive(:destroy) { true }
-        end
+                allow(user).to receive_message_chain(:standups, :find_by) { @standup }
+                allow(@standup).to receive(:destroy) { true }
+            end
 
-         it " deletes the standup from the database" do
-            post :destroy, :id => 1
+             it " deletes the standup from the database" do
+                post :destroy, :id => 1
+            end
         end
         
+        context "parameters for destroy are not ok" do
+            before do
+                @standup = mock_model(Standup, :id => 1)
+                standups = double("standups", :build => @standup)
+
+                allow(Standup).to receive(:find) { @standup }
+                allow(@standup).to receive(:update)
+
+                user = double(User, :standups => standups)
+                allow(request.env["warden"]).to receive(:authenticate!) { user }
+                allow(controller).to receive(:current_user) { user }
+
+                allow(user).to receive_message_chain(:standups, :find_by) { @standup2 }
+                allow(@standup).to receive(:destroy) { true }
+            end
+
+            it "displays the notice" do
+                get :edit, :id => 1
+                expect(flash[:notice]).to eql("Not authorized to edit this standup")
+            end
+        end
     end
 
 end
