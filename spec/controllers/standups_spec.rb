@@ -62,5 +62,39 @@ RSpec.describe StandupsController, :type => :controller do
 
     end
 
+    describe "GET show_standup" do
+
+        before do
+            @standup = double(Standup, :id => 2)
+            @prev_standup = double(Standup, :id => 1)
+            standups = double("standups", :build => @standup)
+
+
+            allow(Standup).to receive(:find) { @standup }
+
+            allow(@standup).to receive(:find_previous) { @prev_standup }
+
+            user = double(User, :standups => standups)
+            allow(request.env["warden"]).to receive(:authenticate!) { user }
+            allow(controller).to receive(:current_user) { user }
+        end
+
+         it "returns http success" do
+            get :show, :id => 1
+            expect(response).to have_http_status(:success)
+        end
+
+        it "renders the show template" do
+            get :show, :id => 1
+            expect(response).to render_template("show")
+        end
+
+        it "prepares for saving new standup" do
+            get :show, :id => 1
+            expect(assigns(:prev)).to eql(@prev_standup)
+        end
+
+    end
+
 end
 
