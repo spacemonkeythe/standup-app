@@ -8,7 +8,7 @@ Feature: Write a comment under blog post
     And I am a signed up user
     And I am loged in
     And I post a standup 
-    And I click "Add comment"
+    When I click on "Add comment"
     And I fill "This is a body text for a test post" as "Body"
     And I click on "Create Comment"
-    And I should notice "Title" as comment title 
+    Then I should notice "This is a body text for a test post" as comment 

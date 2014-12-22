@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @standup = Standup.find(params[:id])
+    @standup = Standup.find(params[:standup_id])
     @comment = @standup.comments.create(comment_params)
 
     if @comment.save

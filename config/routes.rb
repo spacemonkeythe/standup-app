@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
   
-  resources :comments
   devise_for :users
   get '/users', :to => 'users#index', as: 'users'
   get '/users/:id', :to => 'users#show', as: 'user'  
-  resources :standups
+  resources :standups do
+    resources :comments
+  end
   root :to => "standups#index"
  
   #get "/users/sign_up(.:format)"   =>	"devise/registrations#new" 

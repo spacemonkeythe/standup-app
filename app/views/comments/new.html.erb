@@ -1,4 +1,4 @@
-<%= form_for @comment do |f| %>
+<%= form_for ([:standup, @comment]) do |f| %>
   <%= f.label :body %><br>
   <%= f.text_area :body %><br>
   <br>
