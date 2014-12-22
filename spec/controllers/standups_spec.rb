@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe StandupsController, :type => :controller do
 
+<<<<<<< Updated upstream
     describe "GET index" do
 
         before do
