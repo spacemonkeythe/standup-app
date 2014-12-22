@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
   
+  resources :comments
   devise_for :users
   get '/users', :to => 'users#index', as: 'users'
-  get '/users/:id', :to => 'users#show', as: 'user'
-  #resources :users, only: [:show, :index]   
+  get '/users/:id', :to => 'users#show', as: 'user'  
   resources :standups
   root :to => "standups#index"
  
