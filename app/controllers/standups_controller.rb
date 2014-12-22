@@ -11,7 +11,6 @@ class StandupsController < ApplicationController
   end
 
   def show
-#    @prev = Standup.where("(id < ?) AND (user_id = ?)", @standup.id, @standup.user_id).last 
     @prev = @standup.find_previous 
     respond_with(@standup, @prev)
   end
