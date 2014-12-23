@@ -36,4 +36,14 @@ Then(/^I should notice "(.*?)"$/) do |arg1|
   page.should have_content(arg1)
 end
 
+Given(/^I log out$/) do
+  visit "/"
+  click_on("Logout")
+  page.should have_content("Signed out successfully.")
+end
+
+Then(/^I should not notice "(.*?)"$/) do |arg1|
+   page.should_not have_content(arg1)
+end
+
 
