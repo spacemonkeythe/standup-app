@@ -32,4 +32,8 @@ Then(/^I should notice "(.*?)" as comment$/) do |arg1|
   page.should have_content(arg1)
 end
 
+Then(/^I should notice "(.*?)"$/) do |arg1|
+  page.should have_content(arg1)
+end
+
 
