@@ -23,9 +23,10 @@
 	<% end %>
 	
 	<h2><%= @standup.comments.count %> Comments</h2>
-		<% @standup.comments.each do |comment| %>
-			<%= comment.body %>
-		<% end %>
+
+	<% @standup.comments.each do |comment| %>
+		<%= comment.user.username %><%= comment.body %>
+	<% end %>
 	
 	<% if @standup.user == current_user -%>
 	<div class="btn-group">

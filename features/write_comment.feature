@@ -14,7 +14,7 @@ Feature: Write a comment under blog post
     Then I should notice "This is a body text for a test post" as comment 
 
   @javascript
-  Scenario: I post a comment
+  Scenario: I post a blank comment
     Given I am on the homepage
     And I am a signed up user
     And I am loged in
