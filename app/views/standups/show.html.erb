@@ -16,10 +16,10 @@
 		<% @prev.tasks.each do |task| %>
 			<div id="comment">
 				<li class="list-group-item"><%= task.content %></li>
-			</div>	
+			</div>
 		<% end %>
 	<% else %>
-	  <h3>No previous tasks</h3>
+		<h3>No previous tasks</h3>
 	<% end %>
 	
 	<h2><%= @standup.comments.count %> Comments</h2>
@@ -31,8 +31,9 @@
 	
 	<% if @standup.user == current_user -%>
 	<div class="btn-group">
-		| <%= link_to "Add comment", new_standup_comment_path(@standup) %> | <%= link_to 'Edit', edit_standup_path(@standup), class: "btn btn-default" %>
-		| <%= link_to 'Destroy', @standup, :method => :delete, :data => { confirm: 'Are you sure?' }, class: "btn btn-default"%>
+		| <%= link_to "Add comment", new_standup_comment_path(@standup) %> 
+		| <%= link_to 'Edit', edit_standup_path(@standup), class: "btn btn-default" %>
+		| <%= link_to 'Destroy', @standup, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default"%>
 	</div>
 <% end %>
 </div>
