@@ -6,13 +6,12 @@ class User < ActiveRecord::Base
  
   mount_uploader :image, ImageUploader
 
-  has_many :standups  do
+  has_many :comments
 
-  
+  has_many :standups  do
     def today
         where(:created_at => (Time.now.beginning_of_day..Time.now))
     end
-
   end
 
 end

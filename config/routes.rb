@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   
   devise_for :users
   get '/users', :to => 'users#index', as: 'users'
-  get '/users/:id', :to => 'users#show', as: 'user'
-  #resources :users, only: [:show, :index]   
-  resources :standups
+  get '/users/:id', :to => 'users#show', as: 'user'  
+  resources :standups do
+    resources :comments
+  end
   root :to => "standups#index"
  
   #get "/users/sign_up(.:format)"   =>	"devise/registrations#new" 

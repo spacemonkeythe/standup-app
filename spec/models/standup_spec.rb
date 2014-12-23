@@ -11,6 +11,7 @@ RSpec.describe Standup, :type => :model do
   it { is_expected.to belong_to(:user) }
   it { is_expected.to validate_presence_of(:user) }
   it { is_expected.to have_many(:tasks).dependent(:destroy) }
+  it { is_expected.to have_many(:comments).dependent(:destroy) }
 
   it { should accept_nested_attributes_for(:tasks) }#.but_reject(:all_blank).allow_destroy(true) }
 

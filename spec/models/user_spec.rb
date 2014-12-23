@@ -20,6 +20,7 @@ require "rails_helper"
     it { is_expected.to have_db_column(:last_sign_in_ip).of_type(:inet) }
 
     it { is_expected.to have_many(:standups) }
+    it { is_expected.to have_many(:comments) }
 
     describe "#today" do
 
