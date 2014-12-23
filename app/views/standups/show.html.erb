@@ -15,7 +15,7 @@
 	<% if @prev != nil%>
 		<% @prev.tasks.each do |task| %>
 			<div id="comment">
-				<li class="list-group-item"><%= tasks.content %></li>
+				<li class="list-group-item"><%= task.content %></li>
 			</div>	
 		<% end %>
 	<% else %>
@@ -25,7 +25,8 @@
 	<h2><%= @standup.comments.count %> Comments</h2>
 
 	<% @standup.comments.each do |comment| %>
-		<%= comment.user.username %><%= comment.body %>
+
+		<strong>Posted by: <strong><%= comment.user.username %><br><%= comment.body %>
 	<% end %>
 	
 	<% if @standup.user == current_user -%>
