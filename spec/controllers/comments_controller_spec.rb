@@ -33,47 +33,48 @@ RSpec.describe CommentsController, :type => :controller do
 
   describe "POST create" do
 
-     context "saving comment in the database is OK" do
-            before do
-              @comment = mock_model(Comment)
-              @standup = mock_model(Standup, :id => 1 )
-              
-              @params = {:body => "test"}
-              
-              user = User.create!(:email => "test10@gmail.com", :password => "test123456")
-              sign_in(user)
+    context "saving comment in the database is OK" do
+      before do
+        @comment = mock_model(Comment)
+        @standup = mock_model(Standup, :id => 1 )
+        
+        @params = {:body => "test"}
+        
+        user = User.create!(:email => "test10@gmail.com", :password => "test123456")
+        sign_in(user)
 
-              allow(Standup).to receive(:find) { @standup }
-              allow(@standup).to receive_message_chain(:comments, :create) { @comment }
-              allow(@comment).to receive(:save) { true }
+        allow(Standup).to receive(:find) { @standup }
+        allow(@standup).to receive_message_chain(:comments, :create) { @comment }
+        allow(@comment).to receive(:save) { true }
 
-            end
+      end
 
-            it " try to save the comment" do
-              post :create, :comment => @params, :standup_id => 1
-            end
-        end
+      it " try to save the comment" do
+        post :create, :comment => @params, :standup_id => 1
+      end
+    end
 
-        context "saving comment in the database is not OK" do
-            before do
-              @comment = mock_model(Comment)
-              @standup = mock_model(Standup, :id => 1 )
-              
-              @params = { :body => "test" }
-              
-              user = User.create!(:email => "test10@gmail.com", :password => "test123456")
-              sign_in(user)
+    context "saving comment in the database is not OK" do
+      before do
+        @comment = mock_model(Comment)
+        @standup = mock_model(Standup, :id => 1 )
+        
+        @params = { :body => "test" }
+        
+        user = User.create!(:email => "test10@gmail.com", :password => "test123456")
+        sign_in(user)
 
-              allow(Standup).to receive(:find) { @standup }
-              allow(@standup).to receive_message_chain(:comments, :create) { @comment }
-              allow(@comment).to receive(:save) { false }
+        allow(Standup).to receive(:find) { @standup }
+        allow(@standup).to receive_message_chain(:comments, :create) { @comment }
+        allow(@comment).to receive(:save) { false }
 
-            end
+      end
 
-            it "try to saves the comment" do
-              post :create, :comment => @params, :standup_id => 1 
-            end
-        end
+      it "try to saves the comment" do
+        post :create, :comment => @params, :standup_id => 1 
+      end
+      
+    end
   end
 
 end
